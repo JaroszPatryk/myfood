@@ -1,13 +1,10 @@
 package pl.pjaroszcompany.myfood.external.meal;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.util.List;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -15,17 +12,16 @@ import java.util.List;
 @Entity
 @Table(name = "meals")
 public class MealEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(nullable = false, length = 30)
     private String nameFood;
-
     @ManyToMany
+    @JoinTable(name = "meals_products")
+//    , joinColumns=@JoinColumn(name = "id_meal"),
+//            inverseJoinColumns = @JoinColumn(name = "id_product"))
     private List<ProductsEntity> products;
-
     @Column(nullable = false)
     private String howToPrepareMeal;
 }

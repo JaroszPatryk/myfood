@@ -1,18 +1,22 @@
 package pl.pjaroszcompany.myfood.external.meal;
 
-import org.hibernate.annotations.ManyToAny;
-import pl.pjaroszcompany.myfood.domain.meal.Meal;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "products")
 public class ProductsEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToMany
-    private List<MealEntity> products;
+    @Column(nullable = false, length = 30)
+    private String nameProduct;
+//    @ManyToMany(mappedBy = "products")
+//    private List<MealEntity> meals;
 }

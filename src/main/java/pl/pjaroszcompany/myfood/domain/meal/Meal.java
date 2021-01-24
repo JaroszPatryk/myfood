@@ -1,9 +1,6 @@
 package pl.pjaroszcompany.myfood.domain.meal;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 
@@ -11,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Builder
 public class Meal {
     @Setter
     private Long id;
