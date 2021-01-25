@@ -1,14 +1,18 @@
 package pl.pjaroszcompany.myfood.external.meal;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.pjaroszcompany.myfood.domain.meal.Meal;
 import pl.pjaroszcompany.myfood.domain.meal.MealRepository;
+import pl.pjaroszcompany.myfood.search.SearchParam;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
+@AllArgsConstructor
 public class DatabaseMealRepository implements MealRepository {
 
     private JpaMealRepository jpaMealRepository;
@@ -47,6 +51,14 @@ public class DatabaseMealRepository implements MealRepository {
         jpaMealRepository.deleteById(id);
     }
 
+    @Override
+    public List<Meal> findByParams(SearchParam searchParam) {
+        return jpaMealRepository.findBasedOnSearchParams(searchParam)
+                .stream()
+                .map(this::toDomain)
+                .collect(Collectors.toList());
+    }
+
     private Meal toDomain(MealEntity entity) {
         return Meal.builder()
                 .id(entity.getId())
@@ -60,7 +72,7 @@ public class DatabaseMealRepository implements MealRepository {
         return MealEntity.builder()
                 .id(meal.getId())
                 .nameFood(meal.getNameFood())
-                .products(ProductsEntity.builder().nameProduct(meal.getProducts()).build())//sprawdzic
+                .products(Collections.singletonList(ProductsEntity.builder().nameProduct(meal.getProducts()).build()))//sprawdzic
                 .howToPrepareMeal(meal.getHowToPrepareMeal())
                 .build();
     }

@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.pjaroszcompany.myfood.domain.meal.Meal;
 import pl.pjaroszcompany.myfood.domain.meal.MealService;
+import pl.pjaroszcompany.myfood.search.SearchParam;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -24,6 +25,11 @@ public class MealApi {
         return mealService.getAll();
     }
 
+    @PostMapping("/search")
+    public List<Meal> getByParams(@RequestBody SearchParam searchParam) {
+        return mealService.searchByParams(searchParam);
+    }
+
     @GetMapping("/{mealId}")
     public ResponseEntity<Meal> getOne(@PathVariable Long mealId) {
         return mealService.getMealById(mealId)
@@ -32,15 +38,15 @@ public class MealApi {
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity createMeal(@RequestBody @Valid Meal meal, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             List<String> errors = bindingResult.getAllErrors().stream()
-                    .map(er -> er.getDefaultMessage())
+                    .map(err -> err.getDefaultMessage())
                     .collect(Collectors.toList());
 
             return ResponseEntity.badRequest().body(errors);
         }
+
         mealService.create(meal);
         return ResponseEntity.status(201).build();
     }

@@ -1,5 +1,7 @@
 package pl.pjaroszcompany.myfood.domain.meal;
 
+import pl.pjaroszcompany.myfood.search.SearchParam;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -16,4 +18,6 @@ public interface MealRepository {
     void update(Meal meal);
 
     void delete(Long id);
+
+    List<Meal> findByParams(SearchParam searchParam);
 }

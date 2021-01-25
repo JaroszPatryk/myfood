@@ -4,13 +4,13 @@ import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 @Builder
 public class Meal {
-    @Setter
+
     private Long id;
     @NotBlank(message = "Podaje nazwe posiłku")
     private String nameFood;
@@ -20,3 +20,4 @@ public class Meal {
     private String howToPrepareMeal;
 
 }
+

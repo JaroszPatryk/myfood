@@ -1,10 +1,13 @@
 package pl.pjaroszcompany.myfood.external.meal;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -17,10 +20,8 @@ public class MealEntity {
     private Long id;
     @Column(nullable = false, length = 30)
     private String nameFood;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "meals_products")
-//    , joinColumns=@JoinColumn(name = "id_meal"),
-//            inverseJoinColumns = @JoinColumn(name = "id_product"))
     private List<ProductsEntity> products;
     @Column(nullable = false)
     private String howToPrepareMeal;

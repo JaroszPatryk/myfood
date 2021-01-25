@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface JpaMealRepository extends JpaRepository<MealEntity, Long> {
+public interface JpaMealRepository extends JpaRepository<MealEntity, Long>, CustomDatabaseMealRepository {
 
-    Optional<MealEntity> findByNameFood (String nameFood);
+    Optional<MealEntity> findByNameFood(String nameFood);
 
-    List<MealEntity> findByProducts (String products);
+    List<MealEntity> findByProducts(String products);
 
-    
+
 }

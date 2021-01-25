@@ -2,6 +2,7 @@ package pl.pjaroszcompany.myfood.external.meal;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
+@Getter
 @Table(name = "products")
 public class ProductsEntity {
     @Id
