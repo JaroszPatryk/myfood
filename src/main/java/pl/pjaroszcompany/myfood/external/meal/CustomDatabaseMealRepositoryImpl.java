@@ -1,9 +1,7 @@
 package pl.pjaroszcompany.myfood.external.meal;
 
-import pl.pjaroszcompany.myfood.domain.meal.Meal;
-import pl.pjaroszcompany.myfood.search.SearchParam;
+import pl.pjaroszcompany.myfood.products.SearchParams;
 
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -13,23 +11,23 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomDatabaseRepositoryImpl implements CustomDatabaseMealRepository {
+public class CustomDatabaseMealRepositoryImpl implements CustomDatabaseMealRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
-    public List<MealEntity> findBasedOnSearchParams(SearchParam searchParam) {
+    public List<MealEntity> findBasedOnSearchParams(SearchParams searchParams) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<MealEntity> query = criteriaBuilder.createQuery(MealEntity.class);
         Root<MealEntity> root = query.from(MealEntity.class);
 
         List<Predicate> predicates = new ArrayList<>();
-        if (searchParam.getNameFood() != null) {
-            predicates.add(criteriaBuilder.equal(root.get("nameFood"), searchParam.getNameFood()));
+        if (searchParams.getNameFood() != null) {
+            predicates.add(criteriaBuilder.equal(root.get("nameFood"), searchParams.getNameFood()));
         }
-        if (searchParam.getProducts() != null) {
-            predicates.add(criteriaBuilder.equal(root.get("products"), searchParam.getProducts()));
+        if (searchParams.getProducts() != null) {
+            predicates.add(criteriaBuilder.equal(root.get("products"), searchParams.getProducts()));
         }
 
         query.where(predicates.toArray(new Predicate[predicates.size()]));

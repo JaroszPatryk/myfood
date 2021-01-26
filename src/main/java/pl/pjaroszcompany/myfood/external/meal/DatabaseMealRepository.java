@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.pjaroszcompany.myfood.domain.meal.Meal;
 import pl.pjaroszcompany.myfood.domain.meal.MealRepository;
-import pl.pjaroszcompany.myfood.search.SearchParam;
+import pl.pjaroszcompany.myfood.products.SearchParams;
 
 import java.util.Collections;
 import java.util.List;
@@ -52,8 +52,8 @@ public class DatabaseMealRepository implements MealRepository {
     }
 
     @Override
-    public List<Meal> findByParams(SearchParam searchParam) {
-        return jpaMealRepository.findBasedOnSearchParams(searchParam)
+    public List<Meal> findByParams(SearchParams searchParams) {
+        return jpaMealRepository.findBasedOnSearchParams(searchParams)
                 .stream()
                 .map(this::toDomain)
                 .collect(Collectors.toList());

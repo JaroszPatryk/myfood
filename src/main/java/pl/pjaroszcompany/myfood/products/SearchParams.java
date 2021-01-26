@@ -1,4 +1,4 @@
-package pl.pjaroszcompany.myfood.search;
+package pl.pjaroszcompany.myfood.products;
 
 
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class SearchParam {
+public class SearchParams {
 
     private String nameFood;
     private String products;

@@ -7,7 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.pjaroszcompany.myfood.domain.meal.Meal;
 import pl.pjaroszcompany.myfood.domain.meal.MealService;
-import pl.pjaroszcompany.myfood.search.SearchParam;
+import pl.pjaroszcompany.myfood.products.SearchParams;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -26,8 +26,8 @@ public class MealApi {
     }
 
     @PostMapping("/search")
-    public List<Meal> getByParams(@RequestBody SearchParam searchParam) {
-        return mealService.searchByParams(searchParam);
+    public List<Meal> getByParams(@RequestBody SearchParams searchParams) {
+        return mealService.searchByParams(searchParams);
     }
 
     @GetMapping("/{mealId}")

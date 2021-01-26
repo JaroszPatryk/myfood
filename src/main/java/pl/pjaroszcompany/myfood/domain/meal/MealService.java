@@ -3,7 +3,7 @@ package pl.pjaroszcompany.myfood.domain.meal;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.pjaroszcompany.myfood.Exception.AlreadyExistException;
-import pl.pjaroszcompany.myfood.search.SearchParam;
+import pl.pjaroszcompany.myfood.products.SearchParams;
 
 import java.util.List;
 import java.util.Optional;
@@ -41,7 +41,7 @@ public class MealService {
         mealRepository.delete(id);
     }
 
-    public List<Meal> searchByParams(SearchParam searchParam) {
-        return mealRepository.findByParams(searchParam);
+    public List<Meal> searchByParams(SearchParams searchParams) {
+        return mealRepository.findByParams(searchParams);
     }
 }
