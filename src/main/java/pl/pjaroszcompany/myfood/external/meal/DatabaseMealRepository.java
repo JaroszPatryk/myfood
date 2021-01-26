@@ -63,7 +63,7 @@ public class DatabaseMealRepository implements MealRepository {
         return Meal.builder()
                 .id(entity.getId())
                 .nameFood(entity.getNameFood())
-                .products(entity.getProducts().toString())//sprawdzic
+                .products(entity.getProducts().toString())//
                 .howToPrepareMeal(entity.getHowToPrepareMeal())
                 .build();
     }
@@ -72,7 +72,7 @@ public class DatabaseMealRepository implements MealRepository {
         return MealEntity.builder()
                 .id(meal.getId())
                 .nameFood(meal.getNameFood())
-                .products(Collections.singletonList(ProductsEntity.builder().nameProduct(meal.getProducts()).build()))//sprawdzic
+                .products(Collections.singletonList(ProductsEntity.builder().nameProduct(meal.getProducts()).build()))//
                 .howToPrepareMeal(meal.getHowToPrepareMeal())
                 .build();
     }

@@ -17,7 +17,7 @@ public class MealService {
 
     public void create(Meal meal) {
         if (mealRepository.existsByNameFood(meal.getNameFood())) {
-            throw new AlreadyExistException(String.format("Car with vin %s already exists", meal.getNameFood()));
+            throw new AlreadyExistException(String.format("Meal with name %s already exists", meal.getNameFood()));
         }
 
         mealRepository.create(meal);

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.pjaroszcompany.myfood.external.meal.MealEntity;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,7 +14,7 @@ import lombok.Setter;
 public class SearchParams {
 
     private String nameFood;
-    private String products;
+    private MealEntity products;
     private String howToPrepareMeal;
 
 }
