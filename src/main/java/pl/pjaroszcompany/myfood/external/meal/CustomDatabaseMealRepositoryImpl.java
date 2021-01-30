@@ -33,7 +33,7 @@ public class CustomDatabaseMealRepositoryImpl implements CustomDatabaseMealRepos
             predicates.add(criteriaBuilder.equal(rootSecond.get("nameProduct"), searchParams.getProducts()));
         }
 
-        query.where(predicates.toArray(new Predicate[0]));
+        query.where(predicates.toArray(new Predicate[predicates.size()]));
         return entityManager.createQuery(query).getResultList();
     }
 }
