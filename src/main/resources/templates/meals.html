@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Jadłospis posiłków</title>
+
+    <style>
+        .odd{
+            background-color: darkolivegreen;
+        }
+
+        .even{
+            background-color: darkkhaki;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td>Nazwa posiłku</td>
+                <td>Produkty</td>
+                <td>Sposób przygotowania</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="meal, iterStat : ${meals}" th:class="${iterStat.isOdd()}? 'odd' : 'even'">
+                <td><span th:text="${meal.nameFood}"/></td>
+                <td><span th:text="${meal.products}"/></td>
+                <td><span th:text="${meal.howToPrepareMeal}"/></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

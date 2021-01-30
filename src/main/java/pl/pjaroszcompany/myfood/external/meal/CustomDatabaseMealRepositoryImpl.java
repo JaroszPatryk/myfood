@@ -11,6 +11,7 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class CustomDatabaseMealRepositoryImpl implements CustomDatabaseMealRepository {
 
     @PersistenceContext
@@ -20,17 +21,19 @@ public class CustomDatabaseMealRepositoryImpl implements CustomDatabaseMealRepos
     public List<MealEntity> findBasedOnSearchParams(SearchParams searchParams) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<MealEntity> query = criteriaBuilder.createQuery(MealEntity.class);
-        Root<MealEntity> root = query.from(MealEntity.class);
+        Root<MealEntity> rootFirst = query.from(MealEntity.class);
+        Root<ProductsEntity> rootSecond = query.from(ProductsEntity.class);
+
 
         List<Predicate> predicates = new ArrayList<>();
         if (searchParams.getNameFood() != null) {
-            predicates.add(criteriaBuilder.equal(root.get("nameFood"), searchParams.getNameFood()));
+            predicates.add(criteriaBuilder.equal(rootFirst.get("nameFood"), searchParams.getNameFood()));
         }
         if (searchParams.getProducts() != null) {
-            predicates.add(criteriaBuilder.equal(root.get("products"), searchParams.getProducts()));
+            predicates.add(criteriaBuilder.equal(rootSecond.get("nameProduct"), searchParams.getProducts()));
         }
 
-        query.where(predicates.toArray(new Predicate[predicates.size()]));
+        query.where(predicates.toArray(new Predicate[0]));
         return entityManager.createQuery(query).getResultList();
     }
 }

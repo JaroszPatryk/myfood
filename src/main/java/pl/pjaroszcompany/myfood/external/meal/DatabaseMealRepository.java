@@ -6,9 +6,7 @@ import pl.pjaroszcompany.myfood.domain.meal.Meal;
 import pl.pjaroszcompany.myfood.domain.meal.MealRepository;
 import pl.pjaroszcompany.myfood.products.SearchParams;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
@@ -63,7 +61,7 @@ public class DatabaseMealRepository implements MealRepository {
         return Meal.builder()
                 .id(entity.getId())
                 .nameFood(entity.getNameFood())
-                .products(entity.getProducts().toString())//
+                .products(Collections.singletonList(entity.getProducts().toString()))//
                 .howToPrepareMeal(entity.getHowToPrepareMeal())
                 .build();
     }
@@ -72,7 +70,8 @@ public class DatabaseMealRepository implements MealRepository {
         return MealEntity.builder()
                 .id(meal.getId())
                 .nameFood(meal.getNameFood())
-                .products(Collections.singletonList(ProductsEntity.builder().nameProduct(meal.getProducts()).build()))//
+                .products(Arrays.stream(meal.getProducts().toArray())
+                        .map(p -> ProductsEntity.builder().nameProduct((String) p).build()).collect(Collectors.toList()))//
                 .howToPrepareMeal(meal.getHowToPrepareMeal())
                 .build();
     }

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Jadłospis posiłków</title>
+</head>
+<body>
+<h1>Jadłospis posiłków</h1>
+<h3>Dziś jest <span th:text = "${date}"></span></h3>
+
+Dostępne posiłki:
+<ul>
+    <li th:each="nameFood: ${nameFoods}">
+        <span th:text="${nameFood}"/>
+    </li>
+</ul>
+
+</body>
+</html>
