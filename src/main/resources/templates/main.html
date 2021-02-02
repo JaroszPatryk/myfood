@@ -8,6 +8,11 @@
 <h1>Jadłospis posiłków</h1>
 <h3>Dziś jest <span th:text = "${date}"></span></h3>
 
+Menu:
+<ul>
+    <li><a th:href="@{/mvc/meal}">Dostępne posiłki</a></li>
+</ul>
+
 Dostępne posiłki:
 <ul>
     <li th:each="nameFood: ${nameFoods}">

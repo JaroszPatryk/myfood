@@ -1,5 +1,6 @@
 package pl.pjaroszcompany.myfood.external.meal;
 
+import jdk.jfr.MetadataDefinition;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

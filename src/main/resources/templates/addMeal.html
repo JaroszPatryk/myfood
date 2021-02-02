@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Jadłospis posiłków</title>
+</head>
+<body>
+
+    <form method="post" th:action="@{/mvc/meal/addOrEdit}" th:object="${meal}">
+        <input type="hidden" th:field="*{id}"/>
+        Nazwa posiłku: <input type="text" required th:field="*{nameFood}"></br>
+        Produkty: <input type="text" required th:field="*{products}"></br>
+        Sposób przygotowania: <input type="text" required th:field="*{howToPrepareMeal}"></br>
+
+        <input type="submit" value="Zapisz"/>
+
+    </form>
+</body>
+</html>

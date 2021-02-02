@@ -19,6 +19,5 @@ public class ProductsEntity {
     private Long id;
     @Column(nullable = false, length = 30)
     private String nameProduct;
-//    @ManyToMany(mappedBy = "products")
-//    private List<MealEntity> meals;
+
 }

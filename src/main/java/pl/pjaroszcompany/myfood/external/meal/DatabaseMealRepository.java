@@ -38,7 +38,7 @@ public class DatabaseMealRepository implements MealRepository {
 
     @Override
     public void update(Meal meal) {
-        if (jpaMealRepository.existsById(meal.getId())) {
+        if (!jpaMealRepository.existsById(meal.getId())) {
             throw new IllegalStateException("Updated object not exist");
         }
         jpaMealRepository.save(toEntity(meal));
@@ -58,10 +58,14 @@ public class DatabaseMealRepository implements MealRepository {
     }
 
     private Meal toDomain(MealEntity entity) {
+        List<String> listProduct = new ArrayList<>();
+        for (var product:entity.getProducts()) {
+            listProduct.add(product.getNameProduct());
+        }
         return Meal.builder()
                 .id(entity.getId())
                 .nameFood(entity.getNameFood())
-                .products(Collections.singletonList(entity.getProducts().toString()))//
+                .products(listProduct)
                 .howToPrepareMeal(entity.getHowToPrepareMeal())
                 .build();
     }
@@ -71,7 +75,7 @@ public class DatabaseMealRepository implements MealRepository {
                 .id(meal.getId())
                 .nameFood(meal.getNameFood())
                 .products(Arrays.stream(meal.getProducts().toArray())
-                        .map(p -> ProductsEntity.builder().nameProduct((String) p).build()).collect(Collectors.toList()))//
+                        .map(p -> ProductsEntity.builder().nameProduct((String) p).build()).collect(Collectors.toList()))
                 .howToPrepareMeal(meal.getHowToPrepareMeal())
                 .build();
     }

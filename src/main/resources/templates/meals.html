@@ -15,21 +15,45 @@
     </style>
 </head>
 <body>
-    <table>
+
+
+<a th:href="@{/mvc/meal/add}">Dodaj nowy posiłek</a>
+    <h4 th:unless="${meals.size() > 0}">Brak posiłków w jadłospisie</h4>
+
+    <form method="post" th:action="@{/mvc/meal/search}" th:object="${params}">
+
+        Nazwa posiłku: <input type="text" th:field="*{nameFood}"/></br>
+        Produkty: <input type="text" th:field="*{products}"/></br>
+
+        <input type="submit" value="Filtruj"/>
+
+    </form>
+
+    <table th:if="${meals.size() > 0}">
         <thead>
             <tr>
                 <td>Nazwa posiłku</td>
                 <td>Produkty</td>
                 <td>Sposób przygotowania</td>
+                <td>Edytuj</td>
+                <td>Usuń</td>
             </tr>
         </thead>
 
         <tbody>
             <tr th:each="meal, iterStat : ${meals}" th:class="${iterStat.isOdd()}? 'odd' : 'even'">
-                <td><span th:text="${meal.nameFood}"/></td>
-                <td><span th:text="${meal.products}"/></td>
-                <td><span th:text="${meal.howToPrepareMeal}"/></td>
+                <td><span th:text="${meal.nameFood}"></span></td>
+                <td><span th:text="${meal.products}"></span></td>
+                <td><span th:text="${meal.howToPrepareMeal}"></span></td>
+
+                <td>
+                    <a th:href="@{/mvc/meal/edit/} + ${meal.id}">Edytuj</a>
+                </td>
+                <td>
+                <a th:href="@{/mvc/meal/delete/} + ${meal.id}">Usuń</a>
+                </td>
             </tr>
+
         </tbody>
     </table>
 
