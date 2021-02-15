@@ -3,17 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Jadłospis posiłków</title>
+
+    <style>
+        .warning{
+            color: red;
+        }
+    </style>
 </head>
 <body>
 
+<div th:replace="fragments/navigation :: navigation"/>
+
     <form method="post" th:action="@{/mvc/meal/addOrEdit}" th:object="${meal}">
         <input type="hidden" th:field="*{id}"/>
-        Nazwa posiłku: <input type="text" required th:field="*{nameFood}"></br>
+        Nazwa posiłku: <input  type="text" required th:field="*{nameFood}"></br>
+<!--        <span class="warning" th:if="${ #fields.hasErrors('nameFood')}" th:errors="*{nameFood}"></span></br>-->
         Produkty: <input type="text" required th:field="*{products}"></br>
+<!--        <span class="warning" th:if="${ #fields.hasErrors('products')}" th:errors="*{products}"></span></br>-->
         Sposób przygotowania: <input type="text" required th:field="*{howToPrepareMeal}"></br>
+<!--        <span class="warning" th:if="${ #fields.hasErrors('howToPrepareMeal')}" th:errors="*{howToPrepareMeal}"></span></br>-->
+
+<!--        <p th:each="err : ${globalErrors}"><span class="warning" th:text="${err}"/></p>-->
 
         <input type="submit" value="Zapisz"/>
 
     </form>
+<div th:replace="fragments/navigation :: footer"/>
+
 </body>
 </html>

@@ -1,14 +1,20 @@
 package pl.pjaroszcompany.myfood.web;
 
 import lombok.AllArgsConstructor;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pl.pjaroszcompany.myfood.domain.meal.Meal;
 import pl.pjaroszcompany.myfood.domain.meal.MealService;
 import pl.pjaroszcompany.myfood.products.SearchParams;
 
+import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -66,7 +72,7 @@ public class MealController {
     }
 
     @PostMapping("/addOrEdit")
-    String handleAddMeal(@ModelAttribute("meal") Meal meal) {
+    String handleAddMeal(@ModelAttribute("meal")  Meal meal) {
         if (meal.getId() != null) {
             mealService.update(meal);
         } else {

@@ -5,13 +5,11 @@
     <title>Jadłospis posiłków</title>
 </head>
 <body>
-<h1>Jadłospis posiłków</h1>
-<h3>Dziś jest <span th:text = "${date}"></span></h3>
+<p><span th:text="${info.name}"/></p>
 
-Menu:
-<ul>
-    <li><a th:href="@{/mvc/meal}">Dostępne posiłki</a></li>
-</ul>
+<h3>Dziś jest <span th:text="${date}"></span></h3>
+
+<div th:replace="fragments/navigation :: navigation"/>
 
 Dostępne posiłki:
 <ul>
@@ -19,6 +17,8 @@ Dostępne posiłki:
         <span th:text="${nameFood}"/>
     </li>
 </ul>
+
+<div th:replace="fragments/navigation :: footer"/>
 
 </body>
 </html>
