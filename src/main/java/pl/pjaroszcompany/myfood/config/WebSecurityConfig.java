@@ -44,6 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/mvc/meal/add", "mvc/meal/delete/**", "/mvc/meal/edit").hasRole("ADMIN")
                 .and()
                 .formLogin()
+                .successForwardUrl("/mvc/meal")
                 .and().csrf().disable();
     }
 

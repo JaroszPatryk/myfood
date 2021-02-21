@@ -24,10 +24,9 @@ public class MealController {
 
     private final MealService mealService;
 
-    @GetMapping
+    @RequestMapping
     ModelAndView displayMealsPage() {
         ModelAndView mav = new ModelAndView("meals.html");
-//        var productResponse = mealService.getAll();
         mav.addObject("meals", mealService.getAll());
         mav.addObject("params", new SearchParams());
 
