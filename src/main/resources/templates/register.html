@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Jadłospis posiłków</title>
+</head>
+<body>
+    <form method="post" th:action="@{/mvc/register}" th:object="${user}">
+        Nazwa: <input type="text" th:field="*{username}"/></br>
+        Hasło: <input type="password" th:field="*{password}"/></br>
+        Rola: <select th:field="*{role}">
+            <option value="ADMIN">admin</option>
+            <option value="USER">Użytkownik</option>
+        </select></br>
+        <input type="submit" value="Zarejestruj">
+    </form>
+    <div th:replace="fragments/navigation :: footer"></div>
+
+</body>
+</html>
